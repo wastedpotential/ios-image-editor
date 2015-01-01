@@ -15,9 +15,6 @@ typedef struct {
 
 //static const CGFloat kMaxUIImageSize = 1024;
 //static const CGFloat kPreviewImageSize = 120;
-//static const CGFloat kDefaultCropWidth = 320;
-//static const CGFloat kDefaultCropHeight = 320;
-//static const CGFloat kBoundingBoxInset = 15;
 static const NSTimeInterval kAnimationIntervalReset = 0.25;
 static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
@@ -110,9 +107,9 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
 #pragma mark - properties
 
-- (void) setRawImage:(UIImage *)rawImage {
-    _rawImage = rawImage;
-    self.imageView = [[UIImageView alloc] initWithImage:_rawImage];
+- (void) setSourceImage:(UIImage *)image {
+    _sourceImage = image;
+    self.imageView = [[UIImageView alloc] initWithImage:_sourceImage];
     [self reset:NO];
     [self addSubview:self.imageView];
 }
@@ -148,7 +145,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 -(void) reset: (BOOL)animated {
     CGFloat w = 0.0f;
     CGFloat h = 0.0f;
-    CGFloat sourceAspect = self.rawImage.size.height/self.rawImage.size.width;
+    CGFloat sourceAspect = self.sourceImage.size.height/self.sourceImage.size.width;
     CGFloat cropAspect = self.cropRect.size.height/self.cropRect.size.width;
     
     if(sourceAspect > cropAspect) {

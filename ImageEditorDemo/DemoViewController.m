@@ -45,7 +45,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //NSLog(@"image chosen");
-    self.imageEditorView.rawImage = info[UIImagePickerControllerOriginalImage];
+    self.imageEditorView.sourceImage = info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 

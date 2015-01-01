@@ -10,8 +10,9 @@
 
 @interface WPImageEditorView : UIView
 
-@property (strong, nonatomic) UIImage *rawImage;
-@property (strong, nonatomic) UIImage *croppedImage;
+@property (strong, nonatomic) UIImage *sourceImage;
+@property (strong, nonatomic) UIImage *previewImage;
+@property (strong, nonatomic, readonly) UIImage *croppedImage;
 
 @property(nonatomic,assign) BOOL panEnabled;
 @property(nonatomic,assign) BOOL rotateEnabled;
