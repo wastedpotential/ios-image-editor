@@ -8,33 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		EC23E839167B5C3200314147 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC23E838167B5C3200314147 /* Default-568h@2x.png */; };
-		EC23E850167B600D00314147 /* DemoImageEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC23E84F167B600D00314147 /* DemoImageEditor.xib */; };
 		EC23EAED15ECC5610051EA9E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC23EAEC15ECC5610051EA9E /* UIKit.framework */; };
 		EC23EAEF15ECC5610051EA9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC23EAEE15ECC5610051EA9E /* Foundation.framework */; };
 		EC23EAF115ECC5610051EA9E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC23EAF015ECC5610051EA9E /* CoreGraphics.framework */; };
-		EC23EB0F15ECC5F80051EA9E /* HFImageEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC23EB0D15ECC5F80051EA9E /* HFImageEditorViewController.m */; };
-		EC23EB1315ECC6350051EA9E /* HFImageEditorFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC23EB1215ECC6350051EA9E /* HFImageEditorFrameView.m */; };
-		ECA6FB961645C8FA0090CA20 /* DemoImageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA6FB951645C8FA0090CA20 /* DemoImageEditor.m */; };
 		ECFB417115EE162300FA7714 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECFB417015EE162200FA7714 /* AssetsLibrary.framework */; };
 		ECFB418215EE28D000FA7714 /* DemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFB417C15EE28D000FA7714 /* DemoAppDelegate.m */; };
 		ECFB418315EE28D000FA7714 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECFB417D15EE28D000FA7714 /* InfoPlist.strings */; };
 		ECFB418515EE28D000FA7714 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFB418115EE28D000FA7714 /* main.m */; };
+		F2BB8BAA1A4B12E9005EF443 /* WPImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BB8BA91A4B12E9005EF443 /* WPImageEditorView.m */; };
+		F2BB8BAE1A4B18FC005EF443 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BB8BAC1A4B18FC005EF443 /* DemoViewController.m */; };
+		F2BB8BAF1A4B18FC005EF443 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BB8BAD1A4B18FC005EF443 /* DemoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EC23E835167B5B7A00314147 /* HFImageEditorViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HFImageEditorViewController+Private.h"; sourceTree = "<group>"; };
 		EC23E838167B5C3200314147 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EC23E84F167B600D00314147 /* DemoImageEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoImageEditor.xib; sourceTree = "<group>"; };
 		EC23EAE815ECC5610051EA9E /* ImageEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC23EAEC15ECC5610051EA9E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC23EAEE15ECC5610051EA9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EC23EAF015ECC5610051EA9E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		EC23EB0C15ECC5F80051EA9E /* HFImageEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFImageEditorViewController.h; sourceTree = "<group>"; };
-		EC23EB0D15ECC5F80051EA9E /* HFImageEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFImageEditorViewController.m; sourceTree = "<group>"; };
-		EC23EB1115ECC6350051EA9E /* HFImageEditorFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFImageEditorFrameView.h; sourceTree = "<group>"; };
-		EC23EB1215ECC6350051EA9E /* HFImageEditorFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFImageEditorFrameView.m; sourceTree = "<group>"; };
-		ECA6FB941645C8FA0090CA20 /* DemoImageEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoImageEditor.h; sourceTree = "<group>"; };
-		ECA6FB951645C8FA0090CA20 /* DemoImageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoImageEditor.m; sourceTree = "<group>"; };
 		ECFB417015EE162200FA7714 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		ECFB417B15EE28D000FA7714 /* DemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoAppDelegate.h; sourceTree = "<group>"; };
 		ECFB417C15EE28D000FA7714 /* DemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoAppDelegate.m; sourceTree = "<group>"; };
@@ -42,6 +33,11 @@
 		ECFB417F15EE28D000FA7714 /* ImageEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ImageEditor-Info.plist"; path = "ImageEditorDemo/ImageEditor-Info.plist"; sourceTree = SOURCE_ROOT; };
 		ECFB418015EE28D000FA7714 /* ImageEditor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ImageEditor-Prefix.pch"; path = "ImageEditorDemo/ImageEditor-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		ECFB418115EE28D000FA7714 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ImageEditorDemo/main.m; sourceTree = SOURCE_ROOT; };
+		F2BB8BA81A4B12E9005EF443 /* WPImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPImageEditorView.h; sourceTree = "<group>"; };
+		F2BB8BA91A4B12E9005EF443 /* WPImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPImageEditorView.m; sourceTree = "<group>"; };
+		F2BB8BAB1A4B18FC005EF443 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		F2BB8BAC1A4B18FC005EF443 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		F2BB8BAD1A4B18FC005EF443 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,11 +89,8 @@
 		EC23EAF215ECC5610051EA9E /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
-				EC23EB0C15ECC5F80051EA9E /* HFImageEditorViewController.h */,
-				EC23E835167B5B7A00314147 /* HFImageEditorViewController+Private.h */,
-				EC23EB0D15ECC5F80051EA9E /* HFImageEditorViewController.m */,
-				EC23EB1115ECC6350051EA9E /* HFImageEditorFrameView.h */,
-				EC23EB1215ECC6350051EA9E /* HFImageEditorFrameView.m */,
+				F2BB8BA81A4B12E9005EF443 /* WPImageEditorView.h */,
+				F2BB8BA91A4B12E9005EF443 /* WPImageEditorView.m */,
 			);
 			path = ImageEditor;
 			sourceTree = "<group>";
@@ -117,11 +110,11 @@
 		ECFB417A15EE28D000FA7714 /* ImageEditorDemo */ = {
 			isa = PBXGroup;
 			children = (
-				EC23E84F167B600D00314147 /* DemoImageEditor.xib */,
 				ECFB417B15EE28D000FA7714 /* DemoAppDelegate.h */,
 				ECFB417C15EE28D000FA7714 /* DemoAppDelegate.m */,
-				ECA6FB941645C8FA0090CA20 /* DemoImageEditor.h */,
-				ECA6FB951645C8FA0090CA20 /* DemoImageEditor.m */,
+				F2BB8BAB1A4B18FC005EF443 /* DemoViewController.h */,
+				F2BB8BAC1A4B18FC005EF443 /* DemoViewController.m */,
+				F2BB8BAD1A4B18FC005EF443 /* DemoViewController.xib */,
 			);
 			path = ImageEditorDemo;
 			sourceTree = "<group>";
@@ -179,7 +172,7 @@
 			files = (
 				ECFB418315EE28D000FA7714 /* InfoPlist.strings in Resources */,
 				EC23E839167B5C3200314147 /* Default-568h@2x.png in Resources */,
-				EC23E850167B600D00314147 /* DemoImageEditor.xib in Resources */,
+				F2BB8BAF1A4B18FC005EF443 /* DemoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,11 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC23EB0F15ECC5F80051EA9E /* HFImageEditorViewController.m in Sources */,
-				EC23EB1315ECC6350051EA9E /* HFImageEditorFrameView.m in Sources */,
+				F2BB8BAA1A4B12E9005EF443 /* WPImageEditorView.m in Sources */,
 				ECFB418215EE28D000FA7714 /* DemoAppDelegate.m in Sources */,
 				ECFB418515EE28D000FA7714 /* main.m in Sources */,
-				ECA6FB961645C8FA0090CA20 /* DemoImageEditor.m in Sources */,
+				F2BB8BAE1A4B18FC005EF443 /* DemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

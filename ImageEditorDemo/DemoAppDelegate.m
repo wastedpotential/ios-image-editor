@@ -1,9 +1,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "DemoAppDelegate.h"
-#import "DemoImageEditor.h"
+#import "DemoViewController.h"
 
 @interface DemoAppDelegate()
-@property(nonatomic,strong) DemoImageEditor *imageEditor;
 @property(nonatomic,strong) ALAssetsLibrary *library;
 @end
 
@@ -12,75 +11,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    //if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    
-    picker.allowsEditing = NO;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    self.window.rootViewController = picker;
-    
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    self.imageEditor = [[DemoImageEditor alloc] initWithNibName:@"DemoImageEditor" bundle:nil];
-    self.imageEditor.checkBounds = YES;
-    self.imageEditor.rotateEnabled = YES;
-    self.library = library;
-    
-    self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
-        if(!canceled) {
-            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
 
-                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
-                                  completionBlock:^(NSURL *assetURL, NSError *error){
-                                      if (error) {
-                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
-                                                                                          message:[error localizedDescription]
-                                                                                         delegate:nil
-                                                                                cancelButtonTitle:@"Ok"
-                                                                                otherButtonTitles: nil];
-                                          [alert show];
-                                      }
-                                  }];
-        }
-        [picker popToRootViewControllerAnimated:YES];
-        [picker setNavigationBarHidden:NO animated:YES];
-    };
-
+    UIViewController *testVC = [[DemoViewController alloc] initWithNibName:@"DemoViewController" bundle:nil];
+    self.window.rootViewController = testVC;
     [self.window makeKeyAndVisible];
     return YES;
-}
-
-
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
-    NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-
-    [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-        UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
-
-        self.imageEditor.sourceImage = image;
-        self.imageEditor.previewImage = preview;
-        [self.imageEditor reset:NO];
-    
-        
-        [picker pushViewController:self.imageEditor animated:YES];
-        [picker setNavigationBarHidden:YES animated:NO];
-        
-    } failureBlock:^(NSError *error) {
-        NSLog(@"Failed to get asset from library");
-    }];
-}
-
-- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cancel"
-                                                    message:@"Nowhere to go my friend. This is a demo."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles: nil];
-    [alert show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
