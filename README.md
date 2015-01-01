@@ -1,7 +1,11 @@
-iOS Image Editor
+iOS Image Editor View
 ================
 
-A iOS View Controller for image cropping. An alternative to the UIImagePickerController editor with extended features and flexibility. Drop me a line if your're using this on your apps, I would like to know.
+A iOS View for image cropping. An alternative to the UIImagePickerController editor with extended features and flexibility. This is essentially a minor rework of HFImageEditor to overcome some things I found annoying. This version is a subclass of UIView, eliminating the HFImageEditorViewController which allows more flexibility in implementation. It also allows standard UIView mods, such as layer.masksToBounds and layer.cornerRadius.
+
+
+NOTE: THE FOLLOWING DOCS ARE NOT UP TO DATE:
+============================================
 
 Features
 --------
