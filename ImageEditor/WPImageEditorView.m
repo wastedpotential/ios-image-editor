@@ -108,10 +108,15 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 #pragma mark - properties
 
 - (void) setSourceImage:(UIImage *)image {
-    _sourceImage = image;
-    self.imageView = [[UIImageView alloc] initWithImage:_sourceImage];
-    [self reset:NO];
-    [self addSubview:self.imageView];
+    if (image) { 
+        _sourceImage = image;
+        self.imageView = [[UIImageView alloc] initWithImage:_sourceImage];
+        [self reset:NO];
+        [self addSubview:self.imageView];
+    }
+    else if (self.imageView) {
+        [self.imageView removeFromSuperview];
+    }
 }
 
 - (UIImage *) croppedImage {
