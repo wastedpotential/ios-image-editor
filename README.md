@@ -36,11 +36,6 @@ The full resolution UIImage to crop
 
 #### previewImage
 
-<<<<<<< HEAD
-=======
-#### previewImage
-
->>>>>>> 4d4ffff204efa56bb4480c34ab37c864dde536df
 For images larger than <code>maxPreviewSize</code> wide or <code>maxPreviewSize</code> height, the image editor will create a preview image before the view is shown. If a preview is already available you can get a faster transition by setting the preview property. For instance, if the image was fetched using the <code>UIImagePickerController</code>:
 
 ```objective-c
