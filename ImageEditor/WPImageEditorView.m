@@ -13,8 +13,8 @@ typedef struct {
     CGPoint tl,tr,bl,br;
 } Rectangle;
 
-//static const CGFloat kMaxUIImageSize = 1024;
-//static const CGFloat kPreviewImageSize = 120;
+static const CGFloat kMaxUIImageSize = 1024;
+static const CGFloat kPreviewImageSize = 120;
 static const NSTimeInterval kAnimationIntervalReset = 0.25;
 static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
@@ -107,10 +107,29 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
 #pragma mark - properties
 
+- (UIImage *)previewImage {
+    if(_previewImage == nil && _sourceImage != nil) {
+        /*if(self.sourceImage.size.height > kMaxUIImageSize || self.sourceImage.size.width > kMaxUIImageSize) {
+            CGFloat aspect = self.sourceImage.size.height/self.sourceImage.size.width;
+            CGSize size;
+            if(aspect >= 1.0) { //square or portrait
+                size = CGSizeMake(kPreviewImageSize,kPreviewImageSize*aspect);
+            } else { // landscape
+                size = CGSizeMake(kPreviewImageSize,kPreviewImageSize*aspect);
+            }
+            _previewImage = [self scaledImage:self.sourceImage  toSize:size withQuality:kCGInterpolationLow];
+        } else { */
+            _previewImage = _sourceImage;
+        //}
+    }
+    return  _previewImage;
+}
+
 - (void) setSourceImage:(UIImage *)image {
     if (image) { 
         _sourceImage = image;
-        self.imageView = [[UIImageView alloc] initWithImage:_sourceImage];
+        self.previewImage = nil; //force the previewImage to refresh
+        self.imageView = [[UIImageView alloc] initWithImage:self.previewImage];
         [self reset:NO];
         [self addSubview:self.imageView];
     }
