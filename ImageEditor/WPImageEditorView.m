@@ -13,8 +13,6 @@ typedef struct {
     CGPoint tl,tr,bl,br;
 } Rectangle;
 
-static const CGFloat kMaxUIImageSize = 1024;
-static const CGFloat kPreviewImageSize = 120;
 static const NSTimeInterval kAnimationIntervalReset = 0.25;
 static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
@@ -109,18 +107,20 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 
 - (UIImage *)previewImage {
     if(_previewImage == nil && _sourceImage != nil) {
-        /*if(self.sourceImage.size.height > kMaxUIImageSize || self.sourceImage.size.width > kMaxUIImageSize) {
-            CGFloat aspect = self.sourceImage.size.height/self.sourceImage.size.width;
+        CGFloat maxImageSize = 2.0 * MAX(self.cropRect.size.width, self.cropRect.size.height);
+        maxImageSize = MIN(self.maxPreviewSize, maxImageSize);
+        if(self.sourceImage.size.height > maxImageSize || self.sourceImage.size.width > maxImageSize) {
+            CGFloat aspect = self.sourceImage.size.width/self.sourceImage.size.height;
             CGSize size;
             if(aspect >= 1.0) { //square or portrait
-                size = CGSizeMake(kPreviewImageSize,kPreviewImageSize*aspect);
+                size = CGSizeMake(maxImageSize * aspect, maxImageSize);
             } else { // landscape
-                size = CGSizeMake(kPreviewImageSize,kPreviewImageSize*aspect);
+                size = CGSizeMake(maxImageSize, maxImageSize / aspect);
             }
             _previewImage = [self scaledImage:self.sourceImage  toSize:size withQuality:kCGInterpolationLow];
-        } else { */
+        } else {
             _previewImage = _sourceImage;
-        //}
+        }
     }
     return  _previewImage;
 }
@@ -144,6 +144,13 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return viewImage;
+}
+    
+- (CGFloat) maxPreviewSize {
+    if (!_maxPreviewSize) {
+        _maxPreviewSize = 1024;
+    }
+    return _maxPreviewSize;
 }
 
 - (void)setPanEnabled:(BOOL)panEnabled {
@@ -433,6 +440,86 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
         .br = CGPointApplyAffineTransform(r.br, t),
         .bl = CGPointApplyAffineTransform(r.bl, t)
     };
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+# pragma mark Image Transformation
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)transform:(CGAffineTransform*)transform andSize:(CGSize *)size forOrientation:(UIImageOrientation)orientation {
+    *transform = CGAffineTransformIdentity;
+    BOOL transpose = NO;
+    
+    switch(orientation)     {
+        case UIImageOrientationUp:// EXIF 1
+        case UIImageOrientationUpMirrored:{ // EXIF 2
+        } break;
+        case UIImageOrientationDown: // EXIF 3
+        case UIImageOrientationDownMirrored: { // EXIF 4
+            *transform = CGAffineTransformMakeRotation(M_PI);
+        } break;
+        case UIImageOrientationLeftMirrored: // EXIF 5
+        case UIImageOrientationLeft: {// EXIF 6
+            *transform = CGAffineTransformMakeRotation(M_PI_2);
+            transpose = YES;
+        } break;
+        case UIImageOrientationRightMirrored: // EXIF 7
+        case UIImageOrientationRight: { // EXIF 8
+            *transform = CGAffineTransformMakeRotation(-M_PI_2);
+            transpose = YES;
+        } break;
+        default:
+            break;
+    }
+    
+    if(orientation == UIImageOrientationUpMirrored || orientation == UIImageOrientationDownMirrored ||
+       orientation == UIImageOrientationLeftMirrored || orientation == UIImageOrientationRightMirrored) {
+        *transform = CGAffineTransformScale(*transform, -1, 1);
+    }
+    
+    if(transpose) {
+        *size = CGSizeMake(size->height, size->width);
+    }
+}
+
+- (UIImage *)scaledImage:(UIImage *)source toSize:(CGSize)size withQuality:(CGInterpolationQuality)quality {
+    CGImageRef cgImage  = [self newScaledImage:source.CGImage withOrientation:source.imageOrientation toSize:size withQuality:quality];
+    UIImage * result = [UIImage imageWithCGImage:cgImage scale:1.0 orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
+    return result;
+}
+
+
+- (CGImageRef)newScaledImage:(CGImageRef)source withOrientation:(UIImageOrientation)orientation toSize:(CGSize)size withQuality:(CGInterpolationQuality)quality {
+    CGSize srcSize = size;
+    CGAffineTransform transform;
+    [self transform:&transform andSize:&srcSize forOrientation:orientation];
+    
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 size.width,
+                                                 size.height,
+                                                 CGImageGetBitsPerComponent(source),
+                                                 0,
+                                                 CGImageGetColorSpace(source),
+                                                 CGImageGetBitmapInfo(source)
+                                                 );
+    
+    CGContextSetInterpolationQuality(context, quality);
+    CGContextTranslateCTM(context,  size.width/2,  size.height/2);
+    CGContextConcatCTM(context, transform);
+    
+    CGContextDrawImage(context, CGRectMake(-srcSize.width/2 ,
+                                           -srcSize.height/2,
+                                           srcSize.width,
+                                           srcSize.height),
+                       source);
+    
+    CGImageRef resultRef = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    
+    return resultRef;
 }
 
 @end

@@ -23,4 +23,6 @@
 @property(nonatomic,assign) CGFloat maximumScale;
 @property(nonatomic,assign) BOOL checkBounds;
 
+@property(nonatomic, assign) CGFloat maxPreviewSize;
+
 @end
