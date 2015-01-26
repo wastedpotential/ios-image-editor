@@ -34,11 +34,35 @@ Configuration Properties
 #### sourceImage
 The full resolution UIImage to crop
 
+#### previewImage
+
+For images larger than <code> maxPreviewSize</code> wide or <code> maxPreviewSize</code> height, the image editor will create a preview image before the view is shown. If a preview is already available you can get a faster transition by setting the preview propety. For instance, if the image was fetched using the UIImagePickerController:
+<code>
+UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
+NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+
+[self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+    UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
+HFImageEditorViewController *imageEditor = [[HFImageEditorViewController alloc] 
+    initWithNibName:@"DemoImageEditor" bundle:nil];
+    self.imageEditor.sourceImage = image;
+    self.imageEditor.previewImage = preview;        
+...
+} failureBlock:^(NSError *error) {
+    NSLog(@"Failed to get asset from library");
+}];
+</code>
+
+#### maxPreviewSize
+The maximum width or height of the previewImage. By default, this is set to 1024. You can change this as needed for performance. 
+
+Note that the maximum previewImage size will always be limited to 2x the largest dimension of the image editor view. This property can be used to further limit the previewImage size on large image editor views.
+
 #### minimumScale, maximumScale
 The bounds for image scaling. If not defined, image zoom is unlimited.
 
 #### checkBounds
-Set to true to bound the image transform so that you dont' get a black backround on the resulting image.
+Set to true to bound the image transform so that the image always fills the image editor view.
 
 #### panEnabled, rotateEnabled, scaleEnabled, tapToResetEnabled
 BOOL property to enable/disable specific gestures
